@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="TheCocktail\Bundle\SuluSchemaOrgBundle\Builder\BreadcrumbBuilder">
+            <tag name="sulu.schema_org.builder"/>
+            <tag name="sulu.context" context="website"/>
+        </service>
+
+        <service id="TheCocktail\Bundle\SuluSchemaOrgBundle\Builder\OrganizationBuilder">
+            <argument>%sulu.schema_org.config.organization%</argument>
+            <tag name="sulu.schema_org.builder" priority="255"/>
+            <tag name="sulu.context" context="website"/>
+        </service>
+
+        <service id="TheCocktail\Bundle\SuluSchemaOrgBundle\Builder\TemplateBuilder">
+            <argument type="service" id="sulu.schema_org.property_mapper"/>
+            <argument type="service" id="sulu.schema_org.transformer_chain"/>
+            <argument>%sulu.schema_org.config.extensions%</argument>
+            <tag name="sulu.schema_org.builder"/>
+            <tag name="sulu.context" context="website"/>
+        </service>
+    </services>
+</container>

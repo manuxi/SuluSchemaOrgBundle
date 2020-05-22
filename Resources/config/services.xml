@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id='sulu.schema_org.request_collector' class="TheCocktail\Bundle\SuluSchemaOrgBundle\HttpFoundation\RequestChainCollector">
+            <tag name="sulu.context" context="website"/>
+        </service>
+
+        <service id='sulu.schema_org.factory' class="TheCocktail\Bundle\SuluSchemaOrgBundle\Factory\SchemaOrgFactory">
+            <argument type="service" id="sulu.schema_org.attributes"/>
+            <argument type="service" id="sulu.schema_org.extension_chain"/>
+            <tag name="sulu.context" context="website"/>
+        </service>
+
+        <service id="TheCocktail\Bundle\SuluSchemaOrgBundle\EventSubscriber\DataCollectorSubscriber">
+            <argument type="service" id="sulu.schema_org.request_collector"/>
+            <argument type="service" id="sulu.schema_org.factory"/>
+            <tag name="kernel.event_subscriber"/>
+            <tag name="sulu.context" context="website"/>
+        </service>
+
+        <service id="sulu.schema_org.transformer_chain" class="TheCocktail\Bundle\SuluSchemaOrgBundle\Transformer\TransformerChain" />
+        <service id="sulu.schema_org.extension_chain" class="TheCocktail\Bundle\SuluSchemaOrgBundle\Extension\ExtensionChain" />
+
+        <service id="sulu.schema_org.property_mapper" class="TheCocktail\Bundle\SuluSchemaOrgBundle\Mapper\PropertyMapper">
+            <argument type="service" id="sulu.schema_org.transformer_chain"/>
+        </service>
+
+        <service id="sulu.schema_org.twig_extension" class="TheCocktail\Bundle\SuluSchemaOrgBundle\Twig\SchemaOrgExtension">
+            <argument type="service" id="sulu.schema_org.attributes"/>
+            <tag name="sulu.context" context="website"/>
+            <tag name="twig.extension"/>
+        </service>
+
+        <service id="sulu.schema_org.attributes" class="TheCocktail\Bundle\SuluSchemaOrgBundle\HttpFoundation\SchemaAttributes" />
+    </services>
+</container>

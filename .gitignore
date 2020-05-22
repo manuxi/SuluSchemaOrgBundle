@@ -1,0 +1,23 @@
+# composer
+/composer.phar
+/composer.lock
+/auth.json
+/vendor
+
+# IDEs
+.idea/*
+*.iml
+*~
+
+# Cached Files
+*~
+
+# Git Authentication File
+/auth.json
+
+# System files
+.DS_Store
+
+# php-cs-fixer
+.phpcs-cache
+php-cs-fixer

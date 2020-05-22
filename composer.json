@@ -1,0 +1,58 @@
+{
+    "name": "the-cocktail/sulu-schema-org-bundle",
+    "description": "SchemaOrg implementation for Sulu",
+    "type": "library",
+    "homepage": "https://the-cocktail.com",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "TheCocktail\\Bundle\\SuluSchemaOrgBundle\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "require": {
+        "php": "^7.4",
+        "doctrine/doctrine-bundle": "^1.0 || ^2.0",
+        "spatie/schema-org": "^2.13",
+        "sulu/sulu": "^2.0.6",
+        "symfony/config": "^4.3",
+        "symfony/dependency-injection": "^4.3",
+        "symfony/http-foundation": "^4.3",
+        "symfony/http-kernel": "^4.3",
+        "twig/twig": "^2.0 || ^3.0"
+    },
+    "require-dev": {
+        "jackalope/jackalope-doctrine-dbal": "^1.4.1",
+        "phpstan/phpstan": "^0.12.25",
+        "phpstan/phpstan-symfony": "^0.12.6",
+        "squizlabs/php_codesniffer": "^3.5"
+    },
+    "authors": [
+        {
+            "name": "Pablo Lozano",
+            "email": "lozanomunarriz@gmail.com"
+        }
+    ],
+    "scripts": {
+        "lint": [
+            "@phpstan"
+        ],
+        "test": [
+            "@phpunit"
+        ],
+        "phpunit": [
+            "Composer\\Config::disableProcessTimeout",
+            "vendor/bin/phpunit"
+        ],
+        "phpstan": [
+            "vendor/bin/phpstan analyse -c phpstan.neon"
+        ]
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

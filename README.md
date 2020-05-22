@@ -1,1 +1,1 @@
-# SuluSchemaOrgBundle
+#Sulu SchemaOrg Bundle
