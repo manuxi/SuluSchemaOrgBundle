@@ -64,7 +64,7 @@ class PropertyMapper
         $type = $attributes['itemtype'];
 
         // Check if property is not in schema scope
-        if ($type !== '*' && $type !== $model->getSchemaType()) {
+        if (($type !== '*' && $type !== $model->getSchemaType()) || ($type === '*' && !$model->isMaster())) {
             return null;
         }
         return $attributes['itemprop'];

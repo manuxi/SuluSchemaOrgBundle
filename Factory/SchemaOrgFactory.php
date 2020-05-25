@@ -12,6 +12,7 @@ use TheCocktail\Bundle\SuluSchemaOrgBundle\Builder\SchemaOrgBuilderInterface;
 use TheCocktail\Bundle\SuluSchemaOrgBundle\Extension\ExtensionChain;
 use TheCocktail\Bundle\SuluSchemaOrgBundle\HttpFoundation\SchemaAttributes;
 use TheCocktail\Bundle\SuluSchemaOrgBundle\Mapper\AutoMapper;
+use TheCocktail\Bundle\SuluSchemaOrgBundle\Mapper\StructureMapper;
 
 class SchemaOrgFactory
 {
@@ -22,13 +23,16 @@ class SchemaOrgFactory
      */
     private array $builders;
 
+    private StructureMapper $structureMapper;
     private SchemaAttributes $attributes;
     private ExtensionChain $extensionChain;
 
     public function __construct(
+        StructureMapper $structureMapper,
         SchemaAttributes $attributes,
         ExtensionChain $extensionChain
     ) {
+        $this->structureMapper = $structureMapper;
         $this->attributes = $attributes;
         $this->extensionChain = $extensionChain;
     }
@@ -42,6 +46,13 @@ class SchemaOrgFactory
     {
         /** @var BaseType[] $schemas */
         $schemas = [];
+        
+        if ($structure = $request->attributes->get('structure')) {
+            if ($pageSchema = $this->structureMapper->parseStructure($structure)) {
+                $schemas[] = $pageSchema;
+            }
+        }
+        
         foreach ($this->attributes->getAttributes() as $key => $attributes) {
             foreach ($this->builders as $builder) {
                 if ($builder->support($key)) {
