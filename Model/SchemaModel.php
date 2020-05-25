@@ -11,7 +11,13 @@ use TheCocktail\Bundle\SuluSchemaOrgBundle\Exception\SchemaTypeNotImplemented;
 class SchemaModel
 {
     private string $schema;
-    private array $properties;
+    private array $properties = [];
+    private bool $master = false;
+    
+    /**
+     * @var SchemaModel[]
+     */
+    private array $children = [];
 
     public function __construct(string $schema)
     {
@@ -29,7 +35,30 @@ class SchemaModel
      */
     public function setProperty(string $property, $value): void
     {
+        if (isset($this->properties[$property]) && !$value) {
+            return;
+        }
         $this->properties[$property] = $value;
+    }
+    
+    public function addChild(SchemaModel $model, string $method)
+    {
+        $this->children[$method] = $model;
+    }
+    
+    public function getChildren(): array
+    {
+        return $this->children;
+    }
+
+    public function setMaster(bool $master = true)
+    {
+        $this->master = $master;
+    }
+
+    public function isMaster(): bool
+    {
+        return $this->master;
     }
 
     /**
@@ -47,6 +76,11 @@ class SchemaModel
         foreach ($this->properties as $property => $value) {
             $schema->$property($value);
         }
+        
+        foreach ($this->children as $method => $child) {
+            $schema->$method($child->buildSchema());
+        }
+        
         return $schema;
     }
 }

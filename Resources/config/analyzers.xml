@@ -9,11 +9,5 @@
             <tag name="sulu.schema_org.analyzer" priority=""/>
             <tag name="sulu.context" context="website"/>
         </service>
-
-        <service id="TheCocktail\Bundle\SuluSchemaOrgBundle\Analyzer\StructureAnalyzer">
-            <argument type="service" id="sulu.schema_org.attributes"/>
-            <tag name="sulu.schema_org.analyzer"/>
-            <tag name="sulu.context" context="website"/>
-        </service>
     </services>
 </container>
