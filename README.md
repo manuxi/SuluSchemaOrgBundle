@@ -1,6 +1,6 @@
 #Sulu SchemaOrg Bundle
 
-This bundle integrate microformats from Schema.org to your project.
+This bundle integrate Structured Data from (Schema.org)[https://schema.org/] to your project.
 
 ## Instalation
 
