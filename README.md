@@ -54,8 +54,20 @@ Basic example in homepage.xml
     </properties>
 </template>
 ```
+Generated code:
 
-# Configuration
+```html
+ <script type="application/ld+json">
+    {
+    "@context":"https:\/\/schema.org",
+    "@type":"WebSite",
+    "name":"Homepage",
+    "url":"\/",
+    "description":"Metadescription",
+    "datePublished":"2020-05-20T12:33:59+02:00"
+    }
+ </script>
+```
 
 There are some useful options for self-assigning Seo and Extracts properties
 
