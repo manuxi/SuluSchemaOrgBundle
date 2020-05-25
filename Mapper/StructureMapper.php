@@ -102,7 +102,7 @@ class StructureMapper
                 $defined[$itemscope]->addChild($model, $itemprop);
             }
         }
-        return reset($defined);
+        return empty($defined) ? null: reset($defined);
     }
 
     private function creativeEnhancer(SchemaModel $model, StructureBridge $structure)
