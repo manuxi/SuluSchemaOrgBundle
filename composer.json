@@ -1,7 +1,7 @@
 {
     "name": "the-cocktail/sulu-schema-org-bundle",
-    "description": "SchemaOrg implementation for Sulu",
-    "type": "library",
+    "description": "Sulu Bundle for structured data creation",
+    "type": "sulu-bundle",
     "homepage": "https://the-cocktail.com",
     "license": "MIT",
     "autoload": {
