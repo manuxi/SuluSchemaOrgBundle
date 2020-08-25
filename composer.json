@@ -14,13 +14,13 @@
     },
     "require": {
         "php": "^7.4",
-        "doctrine/doctrine-bundle": "^1.0 || ^2.0",
+        "doctrine/doctrine-bundle": "^2.0",
         "spatie/schema-org": "^2.13",
-        "sulu/sulu": "^2.0.6",
-        "symfony/config": "^4.3",
-        "symfony/dependency-injection": "^4.3",
-        "symfony/http-foundation": "^4.3",
-        "symfony/http-kernel": "^4.3",
+        "sulu/sulu": "^2.1",
+        "symfony/config": "^5.1",
+        "symfony/dependency-injection": "^5.1",
+        "symfony/http-foundation": "^5.1",
+        "symfony/http-kernel": "^5.1",
         "twig/twig": "^2.0 || ^3.0"
     },
     "require-dev": {
